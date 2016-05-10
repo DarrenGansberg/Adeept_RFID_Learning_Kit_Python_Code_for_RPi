@@ -11,13 +11,15 @@ def setup():
 
 def loop():
 	while True:
+		#make the buzzer beep
 		GPIO.output(BeepPin, GPIO.HIGH)
 		time.sleep(0.1)
+		#turn the buzzer off.
 		GPIO.output(BeepPin, GPIO.LOW)
 		time.sleep(0.1)
 
 def destroy():
-	GPIO.output(BeepPin, GPIO.HIGH)    # beep off
+	GPIO.output(BeepPin, GPIO.LOW)    # beep off
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here
