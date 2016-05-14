@@ -2,24 +2,24 @@
 import RPi.GPIO as GPIO
 import time
 
-RelayPin = 11    # pin11
+switch_pin = 12    # pin12
 
 def setup():
 	GPIO.setmode(GPIO.BOARD)         # Numbers pins by physical location
-	GPIO.setup(RelayPin, GPIO.OUT)   # Set pin mode as output
-	GPIO.output(RelayPin, GPIO.HIGH)
+	GPIO.setup(switch_pin, GPIO.OUT)   # Set pin mode as output
+	GPIO.output(switch_pin, GPIO.LOW) #turn off the switch to relay.
 
 def loop():
 	while True:
-		print '...clsoe'
-		GPIO.output(RelayPin, GPIO.LOW)
+		print '...close'
+		GPIO.output(switch_pin, GPIO.HIGH) #close switch to relay, relay closes it's switch.
 		time.sleep(0.5)
-		print 'open...'
-		GPIO.output(RelayPin, GPIO.HIGH)
+		print 'open...' #open switch to relay, relay opens its switch.
+		GPIO.output(switch_pin, GPIO.LOW)
 		time.sleep(0.5)
 
 def destroy():
-	GPIO.output(RelayPin, GPIO.HIGH)
+	GPIO.output(switch_pin, GPIO.LOW)
 	GPIO.cleanup()                     # Release resource
 
 if __name__ == '__main__':     # Program start from here
