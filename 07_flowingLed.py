@@ -11,12 +11,13 @@ def setup():
 		GPIO.output(pin, GPIO.HIGH) # Set all pins to high(+3.3V) to off led
 
 def loop():
-	while True:
+	while True:		
 		for pin in pins:
 			GPIO.output(pin, GPIO.LOW)	
 			time.sleep(0.5)
 			GPIO.output(pin, GPIO.HIGH)
-
+		pins.reverse() #so led's will light up in reverse order next cycle
+			
 def destroy():
 	for pin in pins:
 		GPIO.output(pin, GPIO.HIGH)    # turn off all leds
