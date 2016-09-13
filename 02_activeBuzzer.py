@@ -10,7 +10,7 @@ def setup():
 	GPIO.output(BeepPin, GPIO.LOW) # Set pin to high(+3.3V) to off the beep
 
 def loop():
-	while True:
+	while True:		
 		#make the buzzer beep
 		GPIO.output(BeepPin, GPIO.HIGH)
 		time.sleep(0.1)
