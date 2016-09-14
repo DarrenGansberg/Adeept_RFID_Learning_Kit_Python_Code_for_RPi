@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from socket import *
 
-HOST = '192.168.1.11'    # Server(Raspberry Pi) IP address
+HOST = '192.168.3.191'    # Server(Raspberry Pi) IP address
 PORT = 8080
 BUFSIZ = 1024            # buffer size
 ADDR = (HOST, PORT)
