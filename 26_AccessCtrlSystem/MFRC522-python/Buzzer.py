@@ -7,16 +7,16 @@ BZRPin = 11
 def setup():
 	GPIO.setmode(GPIO.BOARD)
 	GPIO.setup(BZRPin, GPIO.OUT)
-	GPIO.output(BZRPin, GPIO.HIGH)
+	GPIO.output(BZRPin, GPIO.LOW)
 
 def beep():
-	GPIO.output(BZRPin, GPIO.LOW)
-	time.sleep(0.5)
 	GPIO.output(BZRPin, GPIO.HIGH)
+	time.sleep(0.5)
+	GPIO.output(BZRPin, GPIO.LOW)
 	time.sleep(0.5)
 
 def destroy():
-	GPIO.output(BZRPin, GPIO.HIGH)
+	GPIO.output(BZRPin, GPIO.LOW)
 	GPIO.cleanup()
 
 def test():
