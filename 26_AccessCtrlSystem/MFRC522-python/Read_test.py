@@ -40,8 +40,8 @@ while continue_reading:
 
     # If we have the UID, continue
     if status == MIFAREReader.MI_OK:
-        Buzzer.setup()
-        Buzzer.beep()
+        #Buzzer.setup()
+        #Buzzer.beep()
 
         # Print UID
         print "Card read UID: "+str(uid[0])+","+str(uid[1])+","+str(uid[2])+","+str(uid[3])
@@ -50,12 +50,18 @@ while continue_reading:
 
         if uid[0]==20 and uid[1]==104 and uid[2]==9 and uid[3]==111:
             print "Welcom, Lucy :)"
-    
+
+	if uid[0]==124 and uid[1]==172 and uid[2]==156 and uid[3]==33:
+	   print "Welcome, Darren :)"	
+
         # This is the default key for authentication
         key = [0xFF,0xFF,0xFF,0xFF,0xFF,0xFF]
         
         # Select the scanned tag
         MIFAREReader.MFRC522_SelectTag(uid)
+
+	print("key is " + str(key))
+	print("uid is " + str(uid))
 
         # Authenticate
         status = MIFAREReader.MFRC522_Auth(MIFAREReader.PICC_AUTHENT1A, 8, key, uid)
@@ -66,4 +72,10 @@ while continue_reading:
             MIFAREReader.MFRC522_StopCrypto1()
         else:
             print "Authentication error"
-
+	
+	#for some reason, tbd, calls to make the buzzer beep
+	#before the authentication by rfid calls produce authentication
+	#errors. Relocating the calls after the above appears to solve
+	#the problem? 
+	Buzzer.setup()
+	Buzzer.beep()
